@@ -1,0 +1,2 @@
+* Este é um repositório dedicado à anotações minhas sobre alguns conceitos de uma linguagem de programação e/ou afins.
+* Você pode usar as anotações para aprendizado, contudo é importante criar as suas próprias e procurar mais sobre o assunto, uma vez que vão se passar através do meu entendimento.
