@@ -1104,11 +1104,62 @@ Neste exemplo:
         * Como evitar: Use json.loads() para strings JSON e json.load() para arquivos JSON.
     
 ## XML
-* XML (eXtensible Markup Language) é uma linguagem de marcação que estrutura dados de maneira hierárquica. Ele é muito usado para armazenar e transportar dados, especialmente em comunicação entre sistemas (como API's). Diferente do JSON, XML é mais verboso e usa tags aninhadas para organizar os dados.
+* XML (eXtensible Markup Language) é uma linguagem de marcação que estrutura dados de maneira hierárquica.
+* ElA é muito usado para armazenar e transportar dados, especialmente em comunicação entre sistemas (como API's).
+* Diferente do JSON, XML é mais verboso e usa tags aninhadas para organizar os dados.
 
+Exemplo:
+~~~~XML
+<pessoas>
+    <pessoa>
+        <nome>João</nome>
+        <idade>30</idade>
+        <cidade>São Paulo</cidade>
+    </pessoa>
+    <pessoa>
+        <nome>Maria</nome>
+        <idade>25</idade>
+        <cidade>Rio de Janeiro</cidade>
+    </pessoa>
+    <pessoa>
+        <nome>Carlos</nome>
+        <idade>35</idade>
+        <cidade>Brasília</cidade>
+    </pessoa>
+</pessoas>
 
-    
+~~~~
+Neste exemplo:
+1. O elemento raíz é `<pessoas>`, que contém várias pessoas.
+1. Cada `<pessoa>` tem filhos como `<nome>`, `<idade>`, `<cidade>`, que contêm os valores correspondentes.
 
+* Agora, vamos aprender à como ler e escrever arquivos XML usando Python.
+
+* ## Leitura de arquivos XML
+    * Para ler um arquivo XML, utilizando a função `parse()` da biblioteca `xml.etree.ElementTree`, que converte o XML em uma estrutura de árvore que pode ser manipulada como objetos Python.
+
+    Exemplo de leitura:
+    ~~~~python
+    import xml.etree.ElementTree as ET
+
+    # Carregar o arquivo XML
+    arvore = ET.parse('dados.xml')  # 'arvore' representa toda a árvore XML
+    raiz = arvore.getroot()  # O elemento raiz <pessoas>
+
+    # Iterar sobre cada elemento <pessoa>
+    for pessoa in raiz.findall('pessoa'):
+        nome = pessoa.find('nome').text
+        idade = pessoa.find('idade').text
+        cidade = pessoa.find('cidade').text
+        print(f'{nome} tem {idade} anos e mora em {cidade}.')
+
+    ~~~~
+    Explicação:
+    * `ET.parse('dados.xml')`: Lê o arquivo XML e constrói uma árvore de elementos.
+    * `getroot()`: Obtém o elemento raiz do documento, neste caso, `<pessoas>`
+    * `findall('pessoas')`: Encontra todas as instâncias do elemento `<pessoa>` sob o elemento raiz `<pessoas>`
+    * `find('tag').text`: Busca um subelemento (`<nome>`, `<idade>`, `<cidade>`) dentro de cada `<pessoa>` e retorna seu conteúdo como texto.   
+ 
 # DUNDER (Double Underscore)
 * Métodos e atributos especiais que tem nome rodeados por duas linhas sublinhada (ex: \_\_init\_\_).
 * São usados para definir comportamentos especiais de classes e objetos, permitindo customização.
