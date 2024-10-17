@@ -1135,7 +1135,7 @@ Neste exemplo:
 
 * Agora, vamos aprender à como ler e escrever arquivos XML usando Python.
 
-* ## Leitura de arquivos XML
+* ### Leitura de arquivos XML
     * Para ler um arquivo XML, utilizando a função `parse()` da biblioteca `xml.etree.ElementTree`, que converte o XML em uma estrutura de árvore que pode ser manipulada como objetos Python.
 
     Exemplo de leitura:
@@ -1159,6 +1159,115 @@ Neste exemplo:
     * `getroot()`: Obtém o elemento raiz do documento, neste caso, `<pessoas>`
     * `findall('pessoas')`: Encontra todas as instâncias do elemento `<pessoa>` sob o elemento raiz `<pessoas>`
     * `find('tag').text`: Busca um subelemento (`<nome>`, `<idade>`, `<cidade>`) dentro de cada `<pessoa>` e retorna seu conteúdo como texto.   
+
+    * ### Acessando atributos no XML
+    * Se os elementos tiverem atributos, como `<pessoa id= "1">`, você pode acessar esse atributos usando o método `.attrib`
+
+    Exemplo de arquivo XML com atributos
+    ~~~~XML
+    <pessoas>
+        <pessoa id="1">
+            <nome>João</nome>
+            <idade>30</idade>
+            <cidade>São Paulo</cidade>
+        </pessoa>
+        <pessoa id="2">
+            <nome>Maria</nome>
+            <idade>25</idade>
+            <cidade>Rio de Janeiro</cidade>
+        </pessoa>
+    </pessoas>
+
+    ~~~~
+
+    Exemplo de leitura de atributos:
+    ~~~~python
+    for pessoa in root.findall('pessoa'):
+        id_pessoa = pessoa.attrib['id']  # Acessa o atributo 'id'
+        nome = pessoa.find('nome').text
+        idade = pessoa.find('idade').text
+        cidade = pessoa.find('cidade').text
+        print(f'ID: {id_pessoa}, Nome: {nome}, Idade: {idade}, Cidade: {cidade}')
+
+    ~~~~
+
+* ### Escrita de arquivos XML
+    * Assim como podemos ler, também podemos escrever dados em um arquivo XML.
+    * Vamos criar um arquivo XML a partir de um conjunto de dados em Python.
+    
+    ~~~~python
+    import xml.etree.ElementTree as ET
+
+    # Criar o elemento raiz
+    pessoas = ET.Element('pessoas')
+
+    # Adicionar as pessoas
+    pessoa1 = ET.SubElement(pessoas, 'pessoa')
+    ET.SubElement(pessoa1, 'nome').text = 'João'
+    ET.SubElement(pessoa1, 'idade').text = '30'
+    ET.SubElement(pessoa1, 'cidade').text = 'São Paulo'
+
+    pessoa2 = ET.SubElement(pessoas, 'pessoa')
+    ET.SubElement(pessoa2, 'nome').text = 'Maria'
+    ET.SubElement(pessoa2, 'idade').text = '25'
+    ET.SubElement(pessoa2, 'cidade').text = 'Rio de Janeiro'
+
+    pessoa3 = ET.SubElement(pessoas, 'pessoa')
+    ET.SubElement(pessoa3, 'nome').text = 'Carlos'
+    ET.SubElement(pessoa3, 'idade').text = '35'
+    ET.SubElement(pessoa3, 'cidade').text = 'Brasília'
+
+    # Gerar a árvore de elementos
+    arvore = ET.ElementTree(pessoas)
+
+    # Escrever no arquivo XML
+    with open('dados.xml', mode='wb') as arquivo_xml:  # 'wb' significa 'write binary'
+        arvore.write(arquivo_xml, encoding= 'UTF-8')
+    ~~~~
+    Explicação:
+    * `ET.Element('pessoas')`: Cria um elemento raiz `<pessoa>`.
+    * `ET.SubElement(pessoas, 'pessoa')`: Adiciona um subelemento, como `<nome>João<\nome>`.
+    * `ET.ElementTree(pessoas)`: Constrói a árvore de elementos apartir do elemento raiz.
+    * `arvore.write(arquivo_xml, encoding= 'UTF-8')`: Escreve a árvore em um arquivo XML com o encoding UTF-8.
+
+* ### Adicionando atributos aos elementos
+    * Você também pode adicionar atributos aos elementos XML durante a criação.
+
+    Exemplo com atributos:
+    ~~~~python
+    pessoa1 = ET.SubElement(pessoas, 'pessoa', id='1')
+    ET.SubElement(pessoa1, 'nome').text = 'João'
+    ET.SubElement(pessoa1, 'idade').text = '30'
+    ET.SubElement(pessoa1, 'cidade').text = 'São Paulo'
+
+    ~~~~
+
+* ### Maniplação avançada de XML
+    1. Removendo elementos:
+        * Você pode remover elementos do XML usando o método `.remove()`
+        
+        Exemplo:
+        ~~~~python
+            raiz.remove(pessoa2)  # Remove a segunda pessoa do XML
+        ~~~~ 
+    2. Modificando valores:
+        * Se quiser alternar o valor de um elemento, basta modificar o valor da propriedade `.text`.
+        ~~~~python
+            pessoa1.find('nome').text = 'João Silva'  # Atualiza o nome de João
+        ~~~~
+
+        * Da mesma forma que dá para alterar um valor de um elemento, também é possível modificar o valor de um atributo usando o método `.attrib()`
+        ~~~~python
+            pessoa1.attrib['id']= '10' # Atualiza o atributo da pessoa1 para 10
+        ~~~~
+
+* ### Biblioteca `lxml` para XML
+    * Se você precisar de mais funcionalidade avançadas para trabalhar com XML, como validação de esquemas ou manipulação complexa, pode usar a bilioteca lxml, que é mais poderosa e rápida que o `ElementTree`
+
+    Para instalar a lxml, use:
+    ~~~~
+        pip install lxml
+    ~~~~
  
 # DUNDER (Double Underscore)
 * Métodos e atributos especiais que tem nome rodeados por duas linhas sublinhada (ex: \_\_init\_\_).
