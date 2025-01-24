@@ -30,3 +30,59 @@
 * ## NOTA IMPORTANTE
 
   * As tags que serão mostardas não são todas as que existem no HTML, as tags 
+
+* ### `<h1>`, `<h2>`, ..., `<h6>`
+  * Essas tags representam o título do texto a ser inserido.
+  * Sendo que essas tags, sem formatação, tem tamanhos de fontes diferentes, tendo a tag `<h1>` a maior formatação dentre as 6, enquanto a `<h6>` tem a menor.
+
+  ## EXEMPLO
+  
+    ~~~~HTML
+    <h1>TESTE</h1>
+    <h2>TESTE</h2>
+    <h3>TESTE</h3>
+    <h4>TESTE</h4>
+    <h5>TESTE</h5>
+    <h6>TESTE</h6>
+    ~~~~
+
+  ## RESULTADO
+    <h1>TESTE</h1>
+    <h2>TESTE</h2>
+    <h3>TESTE</h3>
+    <h4>TESTE</h4>
+    <h5>TESTE</h5>
+    <h6>TESTE</h6>
+
+* ## `<p>`, `<i>`, `<b>`, `<a>`, `<img>`
+  
+  TAG|FUNÇÃO
+  :-----:|:--------:
+  `<p>`|Indica um parágrafo|
+  `<i>`|Indica um texto em itálico
+  `<b>`|Indica um texto em negrito
+  `<a>`|Indica um hyperlink
+  `<img>`|Indica uma imagem
+
+  ## EXEMPLO
+
+  ~~~~HTML
+  <p>
+    Esse é um parágrafo.<i> E esse é um texto em itálico</i>
+  </p>
+  <b>Texto em negrito</b>
+  <p>Hyperlink: <a href= "https://www.youtube.com/watch?v=dQw4w9WgXcQ">Esse texto é um link</a></p>
+  <p>Imagem:</p> 
+  <img src="https://stickers.pw/wp-content/uploads/2024/09/whats_stickers_featured_memes_brazil-min.png" alt= "Um texto que será exibido quando a imagem não carregar" width= 200 height= 160>
+
+  ~~~~
+
+  ## RESULTADO
+  <p>
+    Esse é um parágrafo.<i> E esse é um texto em itálico</i>
+  </p>
+  <b>Texto em negrito</b>
+  <p>Hyperlink: <a href= "https://www.youtube.com/watch?v=dQw4w9WgXcQ">Esse texto é um link</a></p>
+  <p>Imagem:</p> 
+  <img src="https://stickers.pw/wp-content/uploads/2024/09/whats_stickers_featured_memes_brazil-min.png" alt= "Um texto que será exibido quando a imagem não carregar" width= 200 height= 160></img>
+  
