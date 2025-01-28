@@ -211,6 +211,188 @@
 
   * Indica um comentário e portanto não será lido pelo programa
 
+* ### TABLES
+
+  * No HTML é possível criar tabelas com seus devidos cabeçalhos e conteúdos dentro das tags `<table>` e `</table>`.
+
+  * Para definir o a seção do cabeçalho é utilizado as `<thead>` e `</thead>`, enquanto o cabeçalho em si é definido pelas tags `<th>` e `</th>`
+
+  * Já pra a seção do conteúdo é utilizado as tags `<tbody>` e `</tbody>`, e dentro é utilizado as tags `<tr>` e `</tr>` para definir as linhas dessas tabelas, e por fim é utilizado as tags `<td>` e `</td>` para definir os conteúdos em si.
+
+  #### EXEMPLO TABLE
+
+  ~~~~HTML
+  <table>
+      <thead>
+          <th>Nome</th>
+          <th>Cidade</th>
+          <th>idade</th>
+      </thead>
+      <tbody>
+          <!-- Linha 1 -->
+          <tr>
+              <td>Tauã</td>
+              <td>cidade 1</td>
+              <td>19</td>
+          </tr>
+          <!-- Linha 2 -->
+          <tr>
+              <td>Teste</td>
+              <td>cidade teste</td>
+              <td>20</td>
+          </tr>
+      </tbody>
+  </table>
+  ~~~~
+
+  #### RESULTADO TABLE
+
+    <table>
+      <thead>
+          <th>Nome</th>
+          <th>Cidade</th>
+          <th>idade</th>
+      </thead>
+      <tbody>
+          <tr>
+              <td>Tauã</td>
+              <td>cidade 1</td>
+              <td>19</td>
+          </tr>
+          <tr>
+              <td>Teste</td>
+              <td>cidade teste</td>
+              <td>20</td>
+          </tr>
+      </tbody>
+  </table>
+
+  * Note que o primeiro item de cada linha se refere ao primeiro item do cabeçalho da tabela e o segundo item da linha ao segundo item do cabeçalho.
+
+* ### FORMULÁRIOS
+  
+  * Um formulário em HTML é uma forma de o usuário interagir e inserir os dados na página, e além disso é possível definir o arquivo ao qual será enviado esse formulário.
+
+  #### TAGS PARA CONSTRUIR OS FORMULÁRIOS
+  
+  ##### `<form>`, `</form>` 
+    * É utilizado para definir a seção onde vai ficar as tags dos formulários.
+
+    * Nelas possui 2 atributos importante que são `action=`, que define o arquivo ao qual será enviado os dados, e o `method=` que define o método do formulário.
+
+    * Esse atributo `method=` aceita os seguinte valores:
+
+    VALORES|UTILIDADE
+    :-----:|:------:
+    "post"| Define que os dados desse formulário serão enviados para o arquivo definido pelo `action= `
+
+  ##### `<label>`, `</label>`
+    * É utilizado para nomear os campos em que o usuário irá digitar, ajudando o própio a ter noção de quais dados colocar.
+
+  #####  `<input>`, `</input>`
+    * É utilizado para definir os campos onde o usuário poderá digitar os dados.
+
+    * Essa tag possui dois atributos principais, que são `placeholder=` que define um texto temporário para o campo quando está vazio, e `type=` que define o tipo de input que usuário irá digitar.
+
+    * Esse atributo `type=` aceita alguns valores que são os seguintes:
+
+    VALOR|UTILIDADE
+    :---:|:---------:
+    "text" | Utilizado para textos no geral
+    "email" | Utilizado para email
+    "date" | Utilizado para inserir datas
+    "password" | Utilizado para inserir senhas, ocultando o que é digitado pelo usuário
+    "submit" | Cria um botão de envio
+
+    ~~~~HTML
+      <form action="form.php" method="post">
+        <div> 
+             <label>Primeiro nome</label>
+             <input type="text" placeholder="Digite seu primeiro nome">
+        </div>
+        <br>
+        <div>
+            <label>Segundo Nome</label>
+            <input type="text">
+        </div>
+        <br>
+        <div>
+            <label>email</label>
+            <input type="email">
+        </div>
+        <br>
+        <div>
+            <label>Data nascimento</label>
+            <input type="date">
+        </div>
+        <br>
+        <div>
+            <label>Senha</label>
+            <input type="password">
+        </div>
+      </form>
+    ~~~~
+
+    <form>
+      <div> 
+            <label>Primeiro nome</label>
+            <input type="text" placeholder="Digite seu primeiro nome">
+      </div>
+      <br>
+      <div>
+          <label>Segundo Nome</label>
+          <input type="text">
+      </div>
+      <br>
+      <div>
+          <label>email</label>
+          <input type="email">
+      </div>
+      <br>
+      <div>
+          <label>Data nascimento</label>
+          <input type="date">
+      </div>
+      <br>
+      <div>
+          <label>Senha</label>
+          <input type="password">
+      </div>
+      <br>
+      <div>
+        <input type="submit">
+      </div>
+    </form>
+
+  ##### `<select>`, `</select>`
+   * É utilizado para criar uma seção que permite o usuário escolher uma opção.
+
+   * Para criar essas opções é utilizado as tags `<option>` e `</option>`, onde nas quais possuem um atribuito chamado `value=` que define o valor que aquela opção terá
+
+   ~~~~HTML
+  <form>
+    <div>
+        <label>Gênero</label>
+        <select>
+            <option value="valor 1">Opção 1</option>
+            <option value="valor 2">Opção 2</option>
+        </select>
+    </div>
+  </form>
+   ~~~~ 
+
+    <form>
+    <div>
+        <label>Gênero</label>
+        <select>
+            <option value="valor 1">Opção 1</option>
+            <option value="valor 2">Opção 2</option>
+        </select>
+    </div>
+  </form>
+    
+
+
 * ### `<link>`
   
   * Tag utilizada para definir a relação do documento com fontes externas, o ícone e o estilo da página.
@@ -247,6 +429,52 @@
 
   <p>Esse é um parâgrafo fora da divisão</p>
   ~~~~
+
+* ### `<button>`, `</button>`
+  * Cria um botão na página
+
+  #### EXEMPLO `<button>`, `</button>`
+
+  ~~~~html
+  <button>Isso é um botão</button>
+  ~~~~
+
+  #### RESULTADO `<button>`, `</button>`
+
+  <button>Isso é um botão</button>
+
+* ### `<blockquote>`, `</blockquote>`
+  
+  * Serve para indentificar citações no documento HTML.
+
+  * Possui um atributo chamado cite, no qual indica a origem da citação.
+
+  #### EXEMPLO `<blockquote>`, `</blockquote>`
+
+  ~~~~HTML
+  <blockquote cite="https://google.com">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi, repudiandae?</blockquote>
+  ~~~~ 
+
+  #### RESULTADO `<blockquote>`, `</blockquote>`
+
+  <blockquote cite="https://google.com">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi, repudiandae?</blockquote>
+
+
+* ### `<abbr>`, `</abbr>`
+
+  * Serve para indicar abreviações no HTML.
+
+  * Possui um atributo chamado `title=` que serve para indicar o que significa a abreviação.
+
+  #### EXEMPLO `<abbr>`, `</abbr>`
+  
+  ~~~~HTML
+  <p>Eu amo a <abbr title="World wide web"> WWW </abbr></p>
+  ~~~~
+
+  #### RESULTADO `<abbr>`, `</abbr>` 
+
+
 
 * ### LISTAS HTML
   * Para definir uma lista no HTML são utilizadas as seguintes tags:
@@ -298,11 +526,11 @@
     <li>item 3</li>
   </ol>
 
-* ### PARÂMETROS `<class= >` e `<id= >`
+* ### ATRIBUTOS `<class= >` e `<id= >`
 
-  * Ambos os dois parâmetros agem e servem da mesma forma, que é para identificar uma ou mais tags no HTML, o que permite aplicar um estilo esclusivo usando o CSS nessas tags específicas.
+  * Ambos os dois parâmetros servem para identificar uma ou mais tags no HTML, o que permite aplicar um estilo esclusivo usando o CSS nessas tags específicas.
 
-  * Elas podem ser referenciadas usando no inicio de seus nomes `.` no caso das classes e `#` no caso da ids.
+  * Elas podem ser referenciadas usando no inicio de seus nomes `.` no caso das classes e `#` no caso das ids.
 
   * Todas as tags do HTML tem esse atributo.
 
@@ -313,9 +541,7 @@
   <h1 class= "segundo-cabecalho">Cabeçalho 2</h1>
   ~~~~
 
-  #### OBS `<class= >` e `<id= >`
-  
-    * Apesar de agirem da mesma forma é uma boa prática utilizar o atributo `class` somente quando quer se referir à várias tags, enquanto o atributo `id` é usado para se referir à uma única tag.
+  * Uma deve ser ter em mente a respeito dessas tags é a de que a `id=` serve para indentificar um único elemento, enquanto a `class=` serve para vários.
 
 
 ## Semâtica HTML
