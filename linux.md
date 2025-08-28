@@ -17,7 +17,15 @@
     * [cat](#cat)
     * [head e tail](#headtail)
     * [less e more](#moreless)
+    * [touch](#touch)
+    * [mkdir](#mkdir)
+    * [mv](#mv)
+    * [rm](#rm)
+    * [cp](#cp)
+    * [grep](#grep)
+    * [find](#find)
 * [Variáveis](#variáveis)
+* [Diretŕios](#diretórios)
 
 # COMANDOS
 
@@ -204,6 +212,146 @@ Flag|Função
 :--:|:---:
 -N|Faz com as linhas sejam numeradas
 
+## TOUCH
+### NOTAÇÃO
+~~~~BASH
+touch <arquivo> [opcional](outro_arquivo)
+~~~~
+
+* Esse comando atualiza o acesso e o timestamp do arquivo. Caso o arquivo não exista, ele irá criar um novo com o memsmo nome e extensão passada.
+
+* Você pode atualizar/criar mútiplos arquivos de uma só vez usando o mesmo comando.
+
+* O comando em si é mais utilizado para criar novos arquivos.
+
+## MKDIR
+### NOTAÇÃO
+~~~~bash
+mkdir <diretorio>
+~~~~
+
+* Abreviação de `Make Directory`, ele cria um diretório com o mesmo nome passado no argumento do comando. 
+
+## MV
+#### NOTAÇÃO
+~~~~bash
+mv <origem_arquivo> <caminho_destino>
+~~~~
+* Abreviação de `Move`, ele move um deteminado arquivo para um outro local.
+
+### EX1:
+~~~~bash
+mv arquivo.txt outroDiretorio/
+mv arquivo.txt outroDiretorio/arquivo.txt
+mv arquivo.txt ../arquivo.txt
+~~~~
+
+* Além disso, esse comando é também usado para renomear arquivos.
+
+### EX2:
+~~~~bash
+mv arquivo.txt novoNome.txt
+mv arquivo.txt diretorio/novoNome.txt
+~~~~
+
+* Caso deseje apenas mover um arquivo sem renomea-lo, basta omitir o nome do arquivo no final do caminho de destino.
+
+## RM
+### NOTAÇÃO
+~~~~bash
+rm [opcional](flags) <arquivo>
+~~~~
+
+* Abreviação de `remove`, esse comando remove um determinado arquivo ou diretório vazio do sistema.
+
+### EX:
+~~~~bash
+rm arquivo.txt
+rm diretorio/arquivo.txt
+rm diretorioVazio/
+~~~~
+
+### FLAGS
+Flag|O que faz
+:--:|:----:
+-r| Remove recursivamente todos os arquivos(incluindo subdiretórios) de um diretoŕio
+
+#### EX:
+~~~~bash
+rm -r diretorio
+~~~~
+
+## CP
+#### NOTAÇÃO
+~~~~bash
+cp [opcional](flags) <arquivo> <destino/>
+~~~~
+
+* Abreviação de `copy`, esse comando copia um determinado arquivo de um lugar para outro.
+
+### EX:
+~~~~bash
+cp arquivo.txt diretorio/
+cp arquivo.txt ../
+cp ../diretorio/arquivo.txt ./
+~~~~
+
+### FLAGS
+Flag|O que faz
+:---:|:------:
+-R|Copia recursivamente um todos os conteúdos de um diretório em outro diretório
+|
+
+#### EX:
+~~~~bash
+cp -R diretorio/ outroDiretorio/
+~~~~
+
+## GREP
+### NOTAÇÃO
+~~~~bash
+grep [opcional](flags) <texto_procura> <arquivo> [opcional](outros_arquivos)
+~~~~
+
+* O comando funciona permite pesquisar determinada string em 1 ou mais arquivos, retornoando as linhas que a possue.
+
+### EX: 
+~~~~bash
+grep "olá" words.txt
+grep "olá" saudacao1.txt saudacao2.txt
+~~~~
+
+### FLAGS
+Flag|O que faz
+:---:|:------:
+-r|pesquisa recursicamente em um diretŕoio inteiro(incluindo subdiretorios) pela string passada
+|
+
+#### EX:
+~~~~bash
+grep -r "olá" ./diretorio
+~~~~
+
+## FIND
+### NOTAÇÃO
+~~~~bash
+find <diretorio> -name <nome_arquivo>
+~~~~
+
+* Esse comando procura por um determinado arquivo no diretório especificado
+
+## EX:
+~~~~bash
+find diretorio -name ola.txt
+~~~~
+
+* Tambem é possível usar expressões de padrão para pesquisar arquivos de forma mais precisa.
+
+## EX:
+~~~~bash
+find ../diretorio -name "*.txt" # Procura todos os arquivos terminados em .txt
+~~~~
+
 # VARIÁVEIS
 ## CRIAR
 * É possível criar vairáveis no terminal do linux da seguinte forma.
@@ -229,3 +377,12 @@ echo $nome
 ## ROOT
 * O root(raiz) é o diretório primário do sistema, é a partir dele que são criados os demais diretórios.
 * Ele é representado pelo símbolo '/'
+
+# TABELA PADRÕES DE COMBINAÇÃO
+
+Caracteres|Função
+:-------:|:-----:
+*|Procura por uma ou mais ocorrencias
+?|Procura por uma ou mais ocorrencias, retornando apenas a primeira
+[]|Serve para listar os caracteres de procura
+
