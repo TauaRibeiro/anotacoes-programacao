@@ -24,9 +24,11 @@
     * [cp](#cp)
     * [grep](#grep)
     * [find](#find)
+    * [whoami](#whoami)
+    * [chmod] (#chmod)
 * [Variáveis](#variáveis)
 * [Diretŕios](#diretórios)
-
+* [Sudo](#sudo)
 # COMANDOS
 
 ## ECHO
@@ -108,7 +110,7 @@ pwd
 
 ### NOTAÇÃO
 ~~~~bash
-ls <caminho>
+ls [opcional](flags) <caminho>
 ~~~~
 
 * Abreviação de `List`, lista todos os conteúdos de um diretório. Caso nenhum caminho seja passado irá lista os conteúdos do diretório atual.
@@ -121,6 +123,11 @@ ls /home/users/diretorio
 ~~~~
 
 * O comando tanto aceita o caminho relativo quanto o absoluto.
+
+### FLAGS
+Flag|O que faz
+:---:|:----:
+-l| Lista os arquivos e diretórios de um sistema de forma completa, exbindo permissões, autor, etc.
 
 ## CD
 ### NOTAÇÃO
@@ -340,18 +347,51 @@ find <diretorio> -name <nome_arquivo>
 
 * Esse comando procura por um determinado arquivo no diretório especificado
 
-## EX:
+### EX1:
 ~~~~bash
 find diretorio -name ola.txt
 ~~~~
 
 * Tambem é possível usar expressões de padrão para pesquisar arquivos de forma mais precisa.
 
-## EX:
+### EX1:
 ~~~~bash
 find ../diretorio -name "*.txt" # Procura todos os arquivos terminados em .txt
 ~~~~
 
+## WHOAMI
+### NOTAÇÃO
+~~~~bash
+whoami
+~~~~
+
+* Esse comando irá imprimir no terminal o nome do usuário atual
+
+## CHMOD
+### NOTAÇÃO
+~~~~bash
+chmod [opcional](flags) u=<permissão>,g=<permissão>,o=<permissao> <arquivo/diretorio>
+~~~~
+
+* Esse comando é uma abreviação para `change mode`, e ele permite fazer a alteração de permissão de um arquivo ou diretório(veja o a sessão de [permissões](#permissões) para mais detales de como funcionam)
+
+* O `u` se refere ao dono, `g` ao grupo, e `o` aos outros.
+
+### EX1:
+~~~~bash
+chmod u=rwx,g=r-x,o=r-- arquivo.txt
+chmod u=rwx,g=r-x,o=r-- diretorio
+~~~~
+
+### FLAGS
+Flag|O que faz
+:--:|:----:
+-R| Altera recusirvamente a permissão de todos os arquivos de um diretório
+
+## EX2:
+~~~~bash
+chmod -R u=rwx,g=,o= diretorio/
+~~~~
 # VARIÁVEIS
 ## CRIAR
 * É possível criar vairáveis no terminal do linux da seguinte forma.
@@ -386,3 +426,75 @@ Caracteres|Função
 ?|Procura por uma ou mais ocorrencias, retornando apenas a primeira
 []|Serve para listar os caracteres de procura
 
+# SUDO
+* É uma abreviação para `superuser do`. É um comando especial que permite rodar outros comandos como o super user(administrados/root).
+
+## EX:
+~~~~bash
+sudo apt update #Atualiza o package manager
+~~~~
+
+* Antes que esse comando possa ser executado o sistema irá pedir para você digitar a senha do root. E só irá rodar se asenha estiver correta.
+
+## ATENÇÃO!!
+* É necessário ter cuidado com os comandos que são rodados com o `sudo`, pois rodalos com essa permissão permite fazer qualquer tipo de alterção no seu computador.
+
+# EX(NÃO RODE ESSE COMANDO):
+~~~~bash
+sudo rm -fr /
+~~~~
+
+* O comando no exemplo assima remove todos os aruqivos que estão no diretório raiz (raiz) de forma recursiva e forçada.
+
+* Normalmente o sistema não permitiria você fazer isso, porém com o `sudo` você terá permissão de administrador, o que significa que irá conseguir rodar esse comando.
+
+* Como consequência todos os arquivos do sistema serão deletados e consequentemente irá tornar o seu computador um enorme peso de papel.
+
+* Então para ressaltar, por favor, **NUNCA RODE ESSE COMANDO OU QUALQUER OUTRO COMANDO COM O SUDO NO SEU COMPUTADOR, E MUITO MENOS NO SEU DIRETÓRIO RAIZ, QUE DESCONHEÇA!!**.
+
+* Se precisar rodar algum comando como super user veja o que ele faz e tenha sempre um backup salvo.
+
+# PERMISSÕES:
+## NOTAÇÃO
+~~~~bash
+[tipo][permissões_owner][permissões_group][permissões_others]
+~~~~
+* Em sistemas Unix (Linux e mac por exemplo), é possível controlar as permissões que determinados usuários tem ao acessar o um arquivo ou diretŕorio.
+
+* Essas permissões são representadas por uma string de 10 caracteres:
+
+## EX1:
+~~~~
+drwxrwxrwx
+~~~~
+
+* Agora vamos destrinchar o comando para entender melhor o que faz.
+
+* A primeira letra do comando indica se é um arquivo ou um direótirio, sendo representados respectivamentes por `-` e `d`.
+
+## EX2:
+~~~~bash
+-rwxrwxrwx # Permissão de um arquivo
+drwxrwxrwx # Permissão de um diretório
+~~~~
+
+* O restante das 9 letras são quebradas em 3 grupos de 3 letras que representam os tipos de permissão.
+
+* Sendo que esses grupos "owner"(dono do arquivo/diretório), "group"(determinado grupo de usuários), "others"(resto dos usuários)
+
+
+* Essas 3 letras podem cada uma delas assumir um desses 4 caracters
+
+Caracter|Siginificado
+:--:|:----:
+r|Permissão de leitura e visualização
+w|Permissão de escrita, edição ou deleção
+x|Permissão de execussão
+-|Sem permissão
+
+## EX3:
+~~~~bash
+-rwxr-xr--
+~~~~
+
+* O comando assima é um permissão para um arquivo onde o dono tem todas as permissões, um determiado grupo de usuários pode ler e executar mas não editar o aquivo, e o restante apenas pode ler o arquivo, não podendo executa-lo.
