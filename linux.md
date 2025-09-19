@@ -26,6 +26,7 @@
     * [find](#find)
     * [whoami](#whoami)
     * [chmod] (#chmod)
+    * [su] (#su)
 * [Variáveis](#variáveis)
 * [Diretŕios](#diretórios)
 * [Sudo](#sudo)
@@ -388,10 +389,24 @@ Flag|O que faz
 :--:|:----:
 -R| Altera recusirvamente a permissão de todos os arquivos de um diretório
 
-## EX2:
+### EX2:
 ~~~~bash
 chmod -R u=rwx,g=,o= diretorio/
 ~~~~
+
+## SU
+### NOTAÇÃO
+~~~~BASH
+su <nome_usuario>
+~~~~
+
+* Abreviação de `switch user`, permite que você mude o usuário a para o outro apartir do nome passado
+
+### EX:
+~~~~bash
+su taua
+~~~~
+
 # VARIÁVEIS
 ## CRIAR
 * É possível criar vairáveis no terminal do linux da seguinte forma.
@@ -417,6 +432,36 @@ echo $nome
 ## ROOT
 * O root(raiz) é o diretório primário do sistema, é a partir dele que são criados os demais diretórios.
 * Ele é representado pelo símbolo '/'
+* Importante mecionar que dentro que / é diferente de /root, pois enquanto o '/' representa o diretório raiz de todo o sistema, /root é um subdiretório para o usarário root (usuário com permissões de administrador) do sistema, funcionando como o diretório home pessoal desse usuário
+
+## BIN
+* Abreviação de `binary`, contém os binário dos comando essenciais para o funcionamento do sistema (como por exemplo, ls, cat, mv, etc).
+* Os programas armazenados em bin ficam disponíveis para todo o sistema, independente de onde esteja
+
+## SBIN
+* Abreviação de `system binary`, contém binários do sistema especializados utilizado, muitas vezes usado pelo super usuário (root), como por exemplo sistemas de montagem de arquivos, verificação de disco e desligamento do sistema.
+* Maior parte das ferramentas presentes nele requerem privéligo de adiministrado.
+
+## LIB
+* Abreviação de `Library`, contém as bibliotecas onde muitos dos programs em /bin e /sbin utilizam, providenciando funcionalidade comuns como leitura de arquivos, manipulação de input e output.
+* É possível também que você veja também os diretórios lib32 e lib64. Que são respectivamente armazenam bibliotecas de 32 e 64 bits.
+* É também possível encontrar módulos de Kernel, trechos de códigos que podem ser carregados no kernel do Linux de acordo com a demanda.
+
+## USR
+* Abreviação de `Unix System Resources`, conteḿ a maior parte dos aplicativos utilizados pelo usuário, bibliotecas, e documentação.
+* Também pode ser encontrados alguns diretórios espelhados do diretório raiz como por exemplo o usr/bin, usr/sbin e usr/lib.
+* Isso deve porque /usr foi feito para armazenar software que não era essencial e que não complementa-se as ferramentas essenciais em /bin e /lib.
+* O que permite uma área de trabalho mais limpa e organizada e uma garantia de que pelo o menos a partição do root esteja disponível.
+
+## BOOT
+* Conteḿ os programas que precisam ser incializados, como o kernel do linux por exemplo.
+
+## DEV
+* Abreviação de `device`, conteḿ programas que agem como interfaces para o hardware.
+* No linux, tudo é tratado como um arquivo, até mesmos os dispositivos como disco, mouse, pendrive e etc.
+* Você pode encontrar dois tipos de dispositivos:
+    * **Block Devices:** Responsáveis por manejar dados em partes, como pro exempplo o disco rígido.
+    * **Character Devices:** Responsáveis por manejar os dados como um fluxo de cracteres, um exeplo disso é o teclado.
 
 # TABELA PADRÕES DE COMBINAÇÃO
 
@@ -453,6 +498,8 @@ sudo rm -fr /
 * Então para ressaltar, por favor, **NUNCA RODE ESSE COMANDO OU QUALQUER OUTRO COMANDO COM O SUDO NO SEU COMPUTADOR, E MUITO MENOS NO SEU DIRETÓRIO RAIZ, QUE DESCONHEÇA!!**.
 
 * Se precisar rodar algum comando como super user veja o que ele faz e tenha sempre um backup salvo.
+
+* Para iniciar uma sessão como o usuário root, você deve utilizar o seguinte comando `sudo -s`.
 
 # PERMISSÕES:
 ## NOTAÇÃO
