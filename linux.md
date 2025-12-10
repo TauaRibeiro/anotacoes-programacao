@@ -25,8 +25,8 @@
     * [grep](#grep)
     * [find](#find)
     * [whoami](#whoami)
-    * [chmod] (#chmod)
-    * [su] (#su)
+    * [chmod](#chmod)
+    * [su](#su)
 * [Variáveis](#variáveis)
 * [Diretŕios](#diretórios)
 * [Sudo](#sudo)
@@ -429,7 +429,7 @@ echo $nome
 ~~~~
 
 # DIRETÓRIOS
-## ROOT
+## DIRETÓRIO RAIZ
 * O root(raiz) é o diretório primário do sistema, é a partir dele que são criados os demais diretórios.
 * Ele é representado pelo símbolo '/'
 * Importante mecionar que dentro que / é diferente de /root, pois enquanto o '/' representa o diretório raiz de todo o sistema, /root é um subdiretório para o usarário root (usuário com permissões de administrador) do sistema, funcionando como o diretório home pessoal desse usuário
@@ -462,6 +462,17 @@ echo $nome
 * Você pode encontrar dois tipos de dispositivos:
     * **Block Devices:** Responsáveis por manejar dados em partes, como pro exempplo o disco rígido.
     * **Character Devices:** Responsáveis por manejar os dados como um fluxo de cracteres, um exeplo disso é o teclado.
+
+## ETC
+* Este diretório contém todos os arquivos de configuração do sistema, tendo a sua maior parte podendo ser editado utilizando um simples editor de texto.
+* O diretório não contém arquivos de configuração de um usuário específico e sim de todo o sistema.
+* Os que são de um usuário em específico se encontram no home desse usuário no diretório /etc.
+
+## HOME
+* O /home é diretório onde se encontra os arquivos de programa de cada um dos usuários do sistema.
+* Sempre que um usuário é adicionado ao sistema é criado um um diretório com o nome do usuário (ex: home/fulano).
+* E dentro dessa pasta ficam todos os diretórios de configuração do programa para este usuário em específico.
+
 
 # TABELA PADRÕES DE COMBINAÇÃO
 
